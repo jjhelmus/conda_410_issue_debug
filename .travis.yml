@@ -1,0 +1,31 @@
+language: objective-c
+
+env:
+  matrix:
+    - CONDA_PY=35
+
+
+before_install:
+    # Remove homebrew.
+    - brew remove --force $(brew list)
+    - brew cleanup -s
+    - rm -rf $(brew --cache)
+
+install:
+    - |
+      MINICONDA_URL="http://repo.continuum.io/miniconda"
+      MINICONDA_FILE="Miniconda3-latest-MacOSX-x86_64.sh"
+      curl -O "${MINICONDA_URL}/${MINICONDA_FILE}"
+      bash $MINICONDA_FILE -b
+
+      export PATH=/Users/travis/miniconda3/bin:$PATH
+
+      conda config --set show_channel_urls true
+      conda update --yes conda
+      conda install --yes conda-build=1.20.0 jinja2 anaconda-client
+      conda install --yes conda==4.0.8
+      conda config --add channels conda-forge
+      
+
+script:
+  - conda build ./recipe
