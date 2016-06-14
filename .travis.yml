@@ -13,11 +13,11 @@ install:
 
       export PATH=/Users/travis/miniconda3/bin:$PATH
 
-      conda config --set show_channel_urls true
       conda update --yes conda
       conda install --yes conda-build
       anaconda config --set url https://api.anaconda.org
       conda config --add channels conda-forge
+      conda config --set show_channel_urls true
       
 
 script:
