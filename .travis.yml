@@ -15,12 +15,12 @@ install:
 
       conda update --yes conda
       conda install --yes conda-build
-      anaconda config --set url https://api.anaconda.org
       conda config --add channels conda-forge
       conda config --set show_channel_urls true
 
       conda info
       conda list
+      cat /Users/travis/.condarc
       
 
 script:
