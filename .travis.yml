@@ -15,8 +15,8 @@ install:
 
       conda update --yes conda
       conda install --yes conda-build
-      conda config --add channels conda-forge
       conda config --set show_channel_urls true
+      conda config --add channels conda-forge
 
       conda info
       conda list
